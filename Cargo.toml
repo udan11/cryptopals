@@ -1,0 +1,7 @@
+[package]
+name = "cryptopals"
+version = "0.1.0"
+authors = ["Dan Ungureanu <dan@ungureanu.me>"]
+
+[dependencies]
+rust-crypto = "^0.2"
