@@ -53,10 +53,10 @@ pub fn c04() {
         }
     }
 
-    println!("index = {index}, key = {key} => {text}",
-             index = best_index,
-             key = best_key,
-             text = text_encode(&best_text));
+    print!("index = {index}, key = {key} => {text}",
+           index = best_index,
+           key = best_key,
+           text = text_encode(&best_text));
 }
 
 pub fn c05() {

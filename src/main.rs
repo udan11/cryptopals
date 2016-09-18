@@ -11,37 +11,29 @@ extern crate crypto;
 pub mod utils;
 pub mod s01;
 
+static CHALLENGES: [fn(); 8] = [s01::c01, s01::c02, s01::c03, s01::c04, s01::c05, s01::c06,
+                                s01::c07, s01::c08];
+
+fn run_challenge(i: usize) {
+    println!("================================================================================");
+    println!("            Challenge # {}", i);
+    println!("--------------------------------------------------------------------------------");
+    CHALLENGES[i - 1]();
+}
+
 fn main() {
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 01");
-    s01::c01();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 02");
-    s01::c02();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 03");
-    s01::c03();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 04");
-    s01::c04();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 05");
-    s01::c05();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 06");
-    s01::c06();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 07");
-    s01::c07();
-
-    println!("------------------------");
-    println!("   Set 01 - Challenge 08");
-    s01::c08();
+    // Checking if any specific challenge should be executed, otherwise runs all
+    // challenges.
+    // e.g. `cargo run 1 2 4` runs only challenges 1, 2 and 4
+    // e.g. `cargo run`       runs all challenges
+    if std::env::args().len() > 1 {
+        for argument in std::env::args().skip(1) {
+            let i = argument.parse::<usize>().unwrap();
+            run_challenge(i);
+        }
+    } else {
+        for i in 0..CHALLENGES.len() {
+            run_challenge(i + 1);
+        }
+    }
 }
