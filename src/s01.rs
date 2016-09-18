@@ -40,7 +40,7 @@ pub fn c04() {
     let mut best_text = Vec::new();
     let mut best_ratio = 0f32;
 
-    for (index, line) in get_lines("s01c04.txt").enumerate() {
+    for (index, line) in get_lines("res/4.txt").enumerate() {
         let buff = line.unwrap();
         let key = xor_decrypt_single(&hex_decode(&buff));
         let text = xor_encrypt_single(&hex_decode(&buff), key);
@@ -68,14 +68,14 @@ pub fn c05() {
 }
 
 pub fn c06() {
-    let ciphertext = base64_decode(&get_bytes("s01c06.txt"));
+    let ciphertext = base64_decode(&get_bytes("res/6.txt"));
     let key = xor_decrypt(&ciphertext);
     println!("{}", text_encode(&xor_encrypt(&ciphertext, &key)));
 }
 
 pub fn c07() {
     let key = b"YELLOW SUBMARINE";
-    let ciphertext = base64_decode(&get_bytes("s01c07.txt"));
+    let ciphertext = base64_decode(&get_bytes("res/7.txt"));
 
     let mut inbuf = RefReadBuffer::new(&ciphertext);
     let mut outbuf_storage = [0; 8192];
@@ -96,7 +96,7 @@ pub fn c07() {
 
 pub fn c08() {
     let size = 16;
-    for (index, line) in get_lines("s01c08.txt").enumerate() {
+    for (index, line) in get_lines("res/8.txt").enumerate() {
         let ciphertext = hex_decode(&line.unwrap());
         let mut set = HashSet::new();
         for chunk in ciphertext.chunks(size) {
