@@ -53,3 +53,19 @@ pub fn hamming_distance(a: &[u8], b: &[u8]) -> u32 {
 
     ret
 }
+
+pub fn pcks7_pad(bytes: &Vec<u8>, size: usize) -> Vec<u8> {
+    let padding = (size - (bytes.len() % size)) as u8;
+    let mut ret = bytes.clone();
+    for _ in 0..padding {
+        ret.push(padding);
+    }
+    ret
+}
+
+pub fn pcks7_unpad(bytes: &Vec<u8>) -> Vec<u8> {
+    // TODO: Properly implement.
+    let mut ret = bytes.clone();
+    ret.truncate(bytes.len() - bytes[bytes.len() - 1] as usize);
+    ret
+}

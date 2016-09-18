@@ -10,9 +10,10 @@ extern crate crypto;
 
 pub mod utils;
 pub mod s01;
+pub mod s02;
 
-static CHALLENGES: [fn(); 8] = [s01::c01, s01::c02, s01::c03, s01::c04, s01::c05, s01::c06,
-                                s01::c07, s01::c08];
+static CHALLENGES: [fn(); 10] = [s01::c01, s01::c02, s01::c03, s01::c04, s01::c05, s01::c06,
+                                s01::c07, s01::c08, s02::c09, s02::c10];
 
 fn run_challenge(i: usize) {
     println!("================================================================================");

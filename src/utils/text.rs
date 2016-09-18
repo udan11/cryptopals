@@ -13,7 +13,16 @@ pub fn text_decode(str: &str) -> Vec<u8> {
 
 // Encodes a vector of bytes as a text.
 pub fn text_encode(bytes: &Vec<u8>) -> String {
-    String::from_utf8(bytes.clone()).unwrap()
+    // String::from_utf8(bytes.clone()).unwrap()
+    let mut ret: String = String::new();
+    for i in 0..bytes.len() {
+        if 10 <= bytes[i] && bytes[i] < 128 {
+            ret.push(bytes[i] as char);
+        } else {
+            ret.push_str(&format!("\\x{:02X}", bytes[i]));
+        }
+    }
+    ret
 }
 
 // Checks if a text is an ASCII-text.
